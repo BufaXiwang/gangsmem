@@ -1,6 +1,18 @@
 {
   "description": "Gangsmem hooks for auto-saving conversations and injecting memories",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/session_start.py\"",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
     "SessionEnd": [
       {
         "matcher": ".*",
