@@ -3,9 +3,10 @@
 Transcript JSONL 解析工具
 
 简化版：像人的记忆一样，只记录关键信息
-- 用户的问题
-- Claude 的核心回复（摘要，不超过500字）
-- 使用的 tools/skills/mcp（只记录名称，不记录返回结果）
+- 用户的问题（完整保留）
+- Claude 的回复（完整保留）
+- 使用的 tools/skills/mcp（只记录名称）
+- 不记录 tool 的返回结果（如文件内容、搜索结果等）
 """
 
 import json
@@ -131,13 +132,12 @@ def parse_assistant_message_simplified(obj: Dict) -> tuple:
     if not text_parts:
         return None, tools_used, skills_used, mcp_used
 
-    # 合并文本并截断（像记忆一样，保留核心）
+    # 合并 Claude 的回复（完整保留）
     full_text = "\n\n".join(text_parts)
-    summary = summarize_text(full_text, max_length=500)
 
     result = {
         "role": "assistant",
-        "content": summary,
+        "content": full_text,
         "ts": obj.get("timestamp", "")
     }
 
@@ -147,31 +147,6 @@ def parse_assistant_message_simplified(obj: Dict) -> tuple:
         result["used"] = sorted(msg_tools)
 
     return result, tools_used, skills_used, mcp_used
-
-
-def summarize_text(text: str, max_length: int = 500) -> str:
-    """
-    智能截断文本，保留核心内容
-
-    - 保留开头和结尾
-    - 如果有代码块，保留代码块的开头
-    - 如果有列表，保留列表项
-    """
-    if len(text) <= max_length:
-        return text
-
-    # 简单策略：保留开头 60% 和结尾 30%
-    head_len = int(max_length * 0.6)
-    tail_len = int(max_length * 0.3)
-
-    head = text[:head_len]
-    tail = text[-tail_len:]
-
-    # 尝试在句子边界截断
-    head = head.rsplit("。", 1)[0] + "。" if "。" in head else head
-    tail = tail.split("。", 1)[-1] if "。" in tail else tail
-
-    return f"{head}\n...[省略]...\n{tail}"
 
 
 # 保留原来的完整解析函数，供其他地方使用
