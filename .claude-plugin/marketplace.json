@@ -1,19 +1,23 @@
 {
+  "$schema": "https://cdn.jsdelivr.net/gh/anthropics/claude-code@main/.claude-plugin/marketplace.schema.json",
   "name": "gangsmem-marketplace",
+  "version": "1.0.0",
   "description": "Claude Code memory enhancement plugins",
   "owner": {
     "name": "BufaXiwang",
-    "url": "https://github.com/BufaXiwang"
+    "email": "bufaxiwang@example.com"
   },
   "plugins": [
     {
       "name": "gangsmem",
-      "source": {
-        "type": "relative",
-        "path": "."
-      },
       "description": "Claude Code 智能记忆增强系统 - 自动记录对话、构建知识库、智能检索",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "author": {
+        "name": "BufaXiwang",
+        "email": "bufaxiwang@example.com"
+      },
+      "source": "./",
+      "category": "productivity"
     }
   ]
 }
