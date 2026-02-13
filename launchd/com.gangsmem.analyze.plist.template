@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.gangsmem.analyze</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>${PLUGIN_DIR}/scripts/scheduled_analyze.py</string>
+    </array>
+
+    <!-- 每天凌晨 3 点执行 -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- 电脑唤醒后如果错过了就立即执行 -->
+    <key>StartCalendarIntervalAllowsOverdueRun</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>${HOME}/.gangsmem/analyze.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>${HOME}/.gangsmem/analyze.err</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>${CLAUDE_DIR}:/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+        <key>CLAUDE_PATH</key>
+        <string>${CLAUDE_PATH}</string>
+        <key>HOME</key>
+        <string>${HOME}</string>
+    </dict>
+
+    <key>WorkingDirectory</key>
+    <string>${HOME}</string>
+</dict>
+</plist>
