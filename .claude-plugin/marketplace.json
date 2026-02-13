@@ -8,7 +8,10 @@
   "plugins": [
     {
       "name": "gangsmem",
-      "source": ".",
+      "source": {
+        "type": "relative",
+        "path": "."
+      },
       "description": "Claude Code 智能记忆增强系统 - 自动记录对话、构建知识库、智能检索",
       "version": "0.1.0"
     }
