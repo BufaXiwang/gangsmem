@@ -13,10 +13,11 @@ UserPromptSubmit Hook: 搜索相关记忆并注入
 """
 
 import sys
+import os
 import json
 from pathlib import Path
 
-PLUGIN_DIR = Path(__file__).parent.parent
+PLUGIN_DIR = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent))
 GANGSMEM_DIR = Path.home() / ".gangsmem"
 CONFIG_FILE = GANGSMEM_DIR / "config.json"
 

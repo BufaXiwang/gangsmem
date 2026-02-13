@@ -1,26 +1,29 @@
 {
-  "SessionEnd": [
-    {
-      "matcher": "*",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "python3 \"${PLUGIN_DIR}/hooks/session_end.py\"",
-          "timeout": 30000
-        }
-      ]
-    }
-  ],
-  "UserPromptSubmit": [
-    {
-      "matcher": "*",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "python3 \"${PLUGIN_DIR}/hooks/inject_memory.py\"",
-          "timeout": 5000
-        }
-      ]
-    }
-  ]
+  "description": "Gangsmem hooks for auto-saving conversations and injecting memories",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/session_end.py\"",
+            "timeout": 30000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/inject_memory.py\"",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
 }

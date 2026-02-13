@@ -2,19 +2,11 @@
   "name": "gangsmem",
   "version": "0.1.0",
   "description": "Claude Code 智能记忆增强系统 - 自动记录对话、构建知识库、智能检索",
-  "author": "tu",
-  "repository": "https://github.com/username/gangsmem",
+  "author": {
+    "name": "BufaXiwang",
+    "email": "bufaxiwang@example.com"
+  },
   "license": "MIT",
-  "hooks": "hooks/hooks.json",
-  "skills": [
-    "skills/analyze",
-    "skills/search",
-    "skills/forget"
-  ],
-  "keywords": [
-    "memory",
-    "knowledge-base",
-    "search",
-    "automation"
-  ]
+  "hooks": "./hooks/hooks.json",
+  "skills": "./skills/"
 }

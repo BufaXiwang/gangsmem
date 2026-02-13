@@ -14,12 +14,13 @@ SessionEnd Hook: 保存对话日志 + 首次自动配置 launchd
 """
 
 import sys
+import os
 import json
 import subprocess
 from pathlib import Path
 from datetime import datetime
 
-PLUGIN_DIR = Path(__file__).parent.parent
+PLUGIN_DIR = Path(os.environ.get("CLAUDE_PLUGIN_ROOT", Path(__file__).parent.parent))
 GANGSMEM_DIR = Path.home() / ".gangsmem"
 LOGS_DIR = GANGSMEM_DIR / "logs"
 
